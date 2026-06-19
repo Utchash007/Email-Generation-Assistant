@@ -1,0 +1,564 @@
+{
+  "metrics_definitions": {
+    "Fact Recall Metric": {
+      "description": "Measures the completeness of information retrieval in the generated email compared to key facts.",
+      "logic": "Uses an LLM-as-a-Judge system to verify if each individual fact bullet point is semantically present in the generated email body. Score = (facts recalled / total facts), ranging from 0.0 to 1.0."
+    },
+    "Tone Adherence Metric": {
+      "description": "Measures style and voice alignment with the requested tone.",
+      "logic": "Uses an LLM-as-a-Judge system to evaluate tone alignment (formal, casual, urgent, empathetic) on a 1-5 rubric. Score is normalized to a 0.0 to 1.0 scale."
+    },
+    "Structure and Professionalism Metric": {
+      "description": "Measures structure correctness, layout flow, and professional greeting/sign-off while checking for extra conversation fluff.",
+      "logic": "Combines a programmatic search for standard greetings and sign-offs (40% weight) with an LLM-as-a-Judge evaluation of layout quality and checks for conversational meta-talk (60% weight)."
+    }
+  },
+  "run_metadata": {
+    "timestamp": "2026-06-19 16:46:27",
+    "dry_run": false
+  },
+  "model_performances": {
+    "llama-3.1-8b-instant": {
+      "aggregates": {
+        "average_fact_recall": 1.0,
+        "average_tone_adherence": 0.85,
+        "average_structure_polish": 0.895,
+        "overall_average_score": 0.915,
+        "average_latency_seconds": 21.22
+      },
+      "runs": [
+        {
+          "scenario_id": 1,
+          "intent": "Follow up after a client meeting to request feedback on the proposal draft",
+          "tone": "formal",
+          "thinking": "The tone is formal, so I will maintain a professional tone throughout the email. I will address the client directly, reference the meeting on Tuesday, mention the proposal draft sent on Wednesday, and request feedback by Friday at 5:00 PM local time to keep the project timeline on schedule.",
+          "subject": "Follow-up on Q3 Marketing Campaign Proposal Draft",
+          "generated_body": "Dear [Client Name],\n\nI hope this email finds you well. I wanted to follow up on our meeting on Tuesday to discuss the Q3 marketing campaign project. As we agreed, I sent the proposal draft to you on Wednesday afternoon for your review.\n\nTo ensure we stay on schedule, I kindly request that you provide your feedback on the proposal by Friday at 5:00 PM local time. Your input is invaluable in helping us deliver a successful project.\n\nThank you for your time and consideration. If you have any questions or concerns, please do not hesitate to reach out.\n\nBest regards,\n[Your Name]",
+          "reference_email": "Subject: Follow-up: Q3 Marketing Campaign Proposal Feedback Request\n\nDear [Name],\n\nI hope this email finds you well.\n\nIt was a pleasure meeting with you on Tuesday to discuss our plans for the Q3 marketing campaign project. As agreed, I sent over the draft proposal for your review on Wednesday afternoon.\n\nTo ensure we keep our launch timeline on schedule, could you please share your feedback on the proposal by Friday at 5:00 PM local time? If you need additional time or have any immediate questions, please let me know.\n\nBest regards,\n[Your Name]",
+          "latency_seconds": 1.35,
+          "metrics": {
+            "fact_recall": {
+              "score": 1.0,
+              "reason": "Recalled 3 out of 3 facts. Analysis: All required key facts were included in the email, either verbatim or semantically."
+            },
+            "tone_adherence": {
+              "score": 1.0,
+              "reason": "Tone Adherence score: 5/5. Reasoning: The email's vocabulary, structure, and pacing perfectly match the 'formal' tone. The language used is professional, the structure is clear and logical, and the pacing is well-balanced. The email feels natural and appropriate for a formal tone."
+            },
+            "structure_polish": {
+              "score": 0.85,
+              "reason": "Combined score: 0.85 (Programmatic: 100%, LLM: 75%). Details: Greeting found, Sign-off found. LLM Analysis: The email has a clear structure, but the paragraphs could be rearranged for better readability. There is no conversational meta-talk in the email."
+            },
+            "average_score": 0.9500000000000001
+          },
+          "status": "success"
+        },
+        {
+          "scenario_id": 2,
+          "intent": "Apologize for a shipping delay on a customer order and offer compensation",
+          "tone": "empathetic",
+          "thinking": "The tone is empathetic, so I'll start by acknowledging the customer's frustration and apologizing for the delay. I'll then explain the reason for the delay, provide the new expected delivery date, and offer a compensation in the form of a $15 credit towards their next purchase. I'll make sure to be polite and understanding throughout the email.",
+          "subject": "Apology for Shipping Delay - Order #10842",
+          "generated_body": "Dear valued customer,\n\nI want to start by apologizing for the delay in shipping your order, #10842. We understand how frustrating this must be for you, and we're truly sorry for the inconvenience.\n\nUnfortunately, the severe winter weather in our Midwest logistics hub has caused significant disruptions to our shipping schedule. However, we're pleased to inform you that we're working hard to get your order back on track, and our new expected delivery date is now June 22nd.\n\nAs a gesture of goodwill, we'd like to offer you a $15 credit towards your next purchase. We hope this small token of apology will help make up for the delay and show our commitment to your satisfaction.\n\nIf you have any questions or concerns, please don't hesitate to reach out to us. We're here to help and appreciate your patience and understanding.\n\nThank you for your business, and we look forward to getting your order to you soon.\n\nBest regards,\n[Name]",
+          "reference_email": "Subject: Important update regarding your order #10842\n\nDear [Name],\n\nI am writing to sincerely apologize for a delay in delivery for your order #10842.\n\nDue to severe winter weather at our Midwest logistics hub, shipping routes have been temporarily disrupted, affecting your order's transit. We are doing everything we can to expedite this, and your new expected delivery date is now June 22. \n\nI know how frustrating shipping delays can be. To help make this right, we've applied a $15 credit to your account, which will automatically deduct from your next purchase. \n\nThank you so much for your patience and understanding.\n\nWarmly,\n[Your Name]",
+          "latency_seconds": 0.97,
+          "metrics": {
+            "fact_recall": {
+              "score": 1.0,
+              "reason": "Recalled 4 out of 4 facts. Analysis: All required key facts were included in the email, with the following facts being recalled: Order number is #10842, Delay was caused by severe winter weather in the Midwest logistics hub, New expected delivery date is June 22nd, and Offering a $15 credit towards their next purchase as compensation."
+            },
+            "tone_adherence": {
+              "score": 0.75,
+              "reason": "Tone Adherence score: 4/5. Reasoning: The email uses suitable vocabulary and structure to convey an empathetic tone. However, there are a few minor choices that could be adjusted to make the tone even more empathetic. The email is well-paced and conveys a genuine apology and offer of goodwill."
+            },
+            "structure_polish": {
+              "score": 1.0,
+              "reason": "Combined score: 1.00 (Programmatic: 100%, LLM: 100%). Details: Greeting found, Sign-off found. LLM Analysis: The email is well-structured and free of conversational meta-talk. It starts with a clear apology, explains the reason for the delay, offers a gesture of goodwill, and ends with a polite closing. The paragraphs are well-organized and easy to follow."
+            },
+            "average_score": 0.9166666666666666
+          },
+          "status": "success"
+        },
+        {
+          "scenario_id": 3,
+          "intent": "Request a deadline extension for the quarterly financial report",
+          "tone": "formal",
+          "thinking": "The tone is formal, so I will maintain a professional tone throughout the email. I will address the intent by requesting a deadline extension, and map the key facts by explaining the reason for the delay, specifying the new submission deadline, and offering a partial draft of the completed sections.",
+          "subject": "Request for Deadline Extension for Quarterly Financial Report",
+          "generated_body": "Dear [Manager's Name],\n\nI am writing to request a deadline extension for the quarterly financial report, which is currently due on Monday, June 22nd. Unfortunately, we have encountered a delay due to the late data release from the European division, which has impacted our ability to complete the report on time.\n\nIn light of this situation, I am requesting a new submission deadline of Thursday, June 25th. I am confident that with this additional time, we will be able to complete the report to the highest standards.\n\nIn the meantime, I can provide a partial draft of the completed sections by Monday, which will give you an opportunity to review our progress and provide feedback. Please let me know if this revised deadline is acceptable, and if there are any further discussions required.\n\nThank you for your understanding and support in this matter.\n\nBest regards,\n[Your Name]",
+          "reference_email": "Subject: Extension Request: Quarterly Financial Report\n\nDear [Name],\n\nI am writing to formally request a brief extension for the submission of the quarterly financial report, which is currently scheduled for Monday, June 22nd.\n\nUnfortunately, we have experienced an unexpected delay in receiving the final figures from our European division. As a result, we require additional time to integrate their data and ensure the report's accuracy. I would like to request a new submission deadline of Thursday, June 25th.\n\nIn the meantime, I can share a partial draft containing all other completed sections this Monday for your preliminary review. Thank you for your consideration and understanding.\n\nSincerely,\n[Your Name]",
+          "latency_seconds": 27.02,
+          "metrics": {
+            "fact_recall": {
+              "score": 1.0,
+              "reason": "Recalled 4 out of 4 facts. Analysis: All required key facts are present in the email, either verbatim or semantically. The email mentions the current report deadline (Monday, June 22nd), the delay caused by a late data release from the European division, requests a new submission deadline of Thursday, June 25th, and offers to provide a partial draft of the completed sections by Monday."
+            },
+            "tone_adherence": {
+              "score": 1.0,
+              "reason": "Tone Adherence score: 5/5. Reasoning: The email uses formal vocabulary, follows a clear and logical structure, and has a good pace. The tone is perfectly matched, with no major deviations or mismatched style."
+            },
+            "structure_polish": {
+              "score": 1.0,
+              "reason": "Combined score: 1.00 (Programmatic: 100%, LLM: 100%). Details: Greeting found, Sign-off found. LLM Analysis: The email is well-structured and free of conversational meta-talk. It clearly states the request for a deadline extension, provides a valid reason for the delay, and offers a solution. The tone is professional and polite, making it suitable for a business communication."
+            },
+            "average_score": 1.0
+          },
+          "status": "success"
+        },
+        {
+          "scenario_id": 4,
+          "intent": "Decline a job candidate after they reached the final interview stage",
+          "tone": "empathetic",
+          "thinking": "The tone is empathetic because we're declining a candidate who has made it to the final stage. I will plan to acknowledge Sarah's excellent technical skills, express appreciation for her time, and explain the reason for the decision in a kind and considerate manner.",
+          "subject": "Final Update on Your Application for Senior QA Engineer",
+          "generated_body": "Dear Sarah,\n\nI wanted to personally reach out to you regarding the status of your application for the Senior QA Engineer position. I want to start by saying how impressed we were with your technical skills and background. Your experience and qualifications truly stood out throughout the hiring process.\n\nUnfortunately, after careful consideration, we have decided to move forward with another candidate who brings more extensive experience in test automation frameworks. Please know that this decision was not made lightly, and we were genuinely impressed by your abilities.\n\nI want to thank you for taking the time to interview with us and for sharing your qualifications with our team. We appreciate your interest in our company and wish you the best of luck in your job search.\n\nBest regards,\n[Name]",
+          "reference_email": "Subject: Interview Update: Senior QA Engineer role at [Company]\n\nDear Sarah,\n\nThank you so much for taking the time to meet with our team during the final interview stage for the Senior QA Engineer position.\n\nThis was an incredibly difficult decision for the team. We were deeply impressed by your technical skills and your excellent QA background. However, we have decided to move forward with another candidate whose experience aligns more closely with the specific test automation frameworks we are building out.\n\nWe appreciate the enthusiasm and expertise you shared with us. We would love to stay in touch and keep you in mind for future roles that fit your background.\n\nWishing you all the best in your search.\n\nBest regards,\n[Your Name]",
+          "latency_seconds": 25.9,
+          "metrics": {
+            "fact_recall": {
+              "score": 1.0,
+              "reason": "Recalled 3 out of 3 facts. Analysis: The email includes the following recalled facts: \n- Candidate name is Sarah Miller, applying for Senior QA Engineer. (Present verbatim)\n- The decision was very difficult because her technical skills and background are excellent. (Present semantically)\n- The hiring team ultimately selected another candidate who has more experience in test automation frameworks. (Present verbatim)"
+            },
+            "tone_adherence": {
+              "score": 0.75,
+              "reason": "Tone Adherence score: 4/5. Reasoning: The email is professional and polished, with a clear and logical structure. However, there are some minor choices that could be adjusted to make it feel more natural and empathetic. For example, the phrase 'we were genuinely impressed by your abilities' could be rephrased to make it sound more sincere and less formal. Overall, the email mostly aligns with the 'empathetic' tone, but with some minor adjustments that could be made to make it feel more natural and empathetic."
+            },
+            "structure_polish": {
+              "score": 0.85,
+              "reason": "Combined score: 0.85 (Programmatic: 100%, LLM: 75%). Details: Greeting found, Sign-off found. LLM Analysis: The email is well-structured, but the layout could be improved for better readability. The conversational tone is professional, and there is no meta-talk. The reasoning for the decision is clear, and the candidate is thanked for their interest in the company."
+            },
+            "average_score": 0.8666666666666667
+          },
+          "status": "success"
+        },
+        {
+          "scenario_id": 5,
+          "intent": "Send a payment reminder for an outstanding invoice",
+          "tone": "urgent",
+          "thinking": "The tone is urgent because the invoice is outstanding and there's a risk of temporary service suspension. I will plan to reference the invoice number, original due date, outstanding balance, and the fact that this is the second reminder. I will also emphasize the need for immediate payment processing.",
+          "subject": "URGENT: Payment Reminder for Outstanding Invoice #INV-2026-904",
+          "generated_body": "Hi [Client Name],\n\nWe are writing to remind you that your outstanding invoice #INV-2026-904 is now past due. The original due date was June 1st, and the outstanding balance is $4,500. This is the second reminder we have sent regarding this invoice.\n\nWe kindly request that you process the payment immediately to avoid temporary service suspension. Please confirm payment or make arrangements for payment as soon as possible.\n\nIf you have any questions or concerns, please do not hesitate to reach out to us.\n\nThank you for your prompt attention to this matter.\n\nBest regards,\n[Your Name]",
+          "reference_email": "Subject: URGENT: Outstanding Payment for Invoice #INV-2026-904\n\nDear [Name],\n\nThis is our second reminder that invoice #INV-2026-904 for $4,500 remains outstanding. This invoice was originally due on June 1st.\n\nPlease process this payment immediately. If we do not receive payment or confirmation of payment processing within the next 48 hours, we will be forced to temporarily suspend your active services until the account is brought current.\n\nIf payment has already been sent, please email us a copy of the receipt so we can update our records.\n\nThank you for your prompt attention to this matter.\n\nSincerely,\n[Your Name]",
+          "latency_seconds": 26.32,
+          "metrics": {
+            "fact_recall": {
+              "score": 1.0,
+              "reason": "Recalled 5 out of 4 facts. Analysis: All required key facts are present in the email, with some minor variations in wording. The invoice number, original due date, outstanding balance, and request for immediate payment processing are all mentioned. However, the fact that this is the second reminder is mentioned, but not explicitly stated as 'second reminder'."
+            },
+            "tone_adherence": {
+              "score": 0.75,
+              "reason": "Tone Adherence score: 4/5. Reasoning: The email is well-structured and clearly conveys the message. However, the language used is slightly too polite and could be adjusted to sound more urgent. The vocabulary is formal and professional, but the phrase 'kindly request' and 'please do not hesitate to reach out' could be rephrased to sound more direct and less polite. Overall, the email mostly aligns with the 'urgent' tone, but could benefit from some minor adjustments."
+            },
+            "structure_polish": {
+              "score": 0.55,
+              "reason": "Combined score: 0.55 (Programmatic: 100%, LLM: 25%). Details: Greeting found, Sign-off found, Contains conversational LLM fluff/meta-text. LLM Analysis: The email is well-structured, but contains conversational LLM text in the form of 'We are writing to remind you' and 'Thank you for your prompt attention to this matter.' The layout is good, but could be improved by removing these phrases."
+            },
+            "average_score": 0.7666666666666666
+          },
+          "status": "success"
+        },
+        {
+          "scenario_id": 6,
+          "intent": "Invite team members to a casual dinner to celebrate a product release",
+          "tone": "casual",
+          "thinking": "The tone is casual, so I'll plan to address the team in a friendly manner, mention the successful product release, and provide all the necessary details for the dinner invitation. I'll also make sure to include a clear RSVP deadline to finalize reservations.",
+          "subject": "You're Invited: Celebrate 3.0 Release at Tony's Pizzeria!",
+          "generated_body": "Hey Team,\n\n Huge congratulations on the successful release of product version 3.0! To celebrate, let's grab some pizza and catch up at Tony's Pizzeria on 5th Avenue this Thursday at 7:00 PM. It'll be a great chance to unwind and share some stories about the project.\n\nPlease RSVP by Tuesday noon so we can finalize reservations. Just hit reply to this email and let me know if you can make it.\n\nLooking forward to seeing you all there!\n\nCheers,\n[Name]",
+          "reference_email": "Subject: Celebration dinner on Thursday: Product v3.0 is live! 🍕\n\nHey team,\n\nWe did it! Product version 3.0 is officially live, and we deserve a celebration.\n\nI'm hosting a casual team dinner this Thursday at 7:00 PM at Tony's Pizzeria on 5th Avenue. It'll be a great chance to kick back, eat some good food, and celebrate all the hard work everyone put in.\n\nPlease let me know if you can make it by RSVPing by Tuesday at noon so I can get the reservation finalized. Hope to see you all there!\n\nBest,\n[Your Name]",
+          "latency_seconds": 25.8,
+          "metrics": {
+            "fact_recall": {
+              "score": 1.0,
+              "reason": "Recalled 5 out of 4 facts. Analysis: The email includes all required key facts, but the total facts count is lower because the email does not explicitly mention the occasion as 'celebrating the successful release of product version 3.0', but rather just 'celebrating' the release. However, the context makes it clear that it's about the product release."
+            },
+            "tone_adherence": {
+              "score": 0.75,
+              "reason": "Tone Adherence score: 4/5. Reasoning: The email has a mostly casual tone, but some minor deviations in vocabulary and structure detract from the overall feel. The use of phrases like 'Huge congratulations' and 'Let's grab some pizza' suggests a casual tone, but the formal closing 'Cheers' and the use of a specific time ('7:00 PM') slightly detract from the casual feel. The structure and pacing of the email are well-suited for a casual tone."
+            },
+            "structure_polish": {
+              "score": 0.85,
+              "reason": "Combined score: 0.85 (Programmatic: 100%, LLM: 75%). Details: Greeting found, Sign-off found. LLM Analysis: "
+            },
+            "average_score": 0.8666666666666667
+          },
+          "status": "success"
+        },
+        {
+          "scenario_id": 7,
+          "intent": "Notify stakeholders of an upcoming critical database server maintenance window",
+          "tone": "urgent",
+          "thinking": "The tone is urgent because a critical database server maintenance window is scheduled, and stakeholders need to be notified. I will plan to address the maintenance window, list the start and end times, mention the expected downtime, and remind them to save active sessions and transactions before the maintenance starts.",
+          "subject": "URGENT: Critical Database Server Maintenance Window - Saturday, June 20, 2026",
+          "generated_body": "Dear Stakeholders,\n\nA critical database server maintenance window is scheduled for Saturday, June 20, 2026, from 2:00 AM to 5:00 AM EST. During this time, we expect up to 30 minutes of complete offline service disruption.\n\nTo minimize the impact, please ensure that all active sessions and transactions are saved before 1:45 AM EST. This will help prevent any data loss or corruption.\n\nWe apologize for any inconvenience this may cause and appreciate your understanding in this matter. If you have any questions or concerns, please do not hesitate to reach out.\n\nThank you for your cooperation.\n\nBest regards,\n[Name]",
+          "reference_email": "Subject: CRITICAL NOTICE: Database Server Maintenance & Outage Window - June 20\n\nDear Stakeholders,\n\nPlease be advised that we will be conducting critical server maintenance on our core database this coming Saturday, June 20, 2026.\n\nThe maintenance window is scheduled from 2:00 AM to 5:00 AM EST. During this period, the system will experience a complete service disruption and will be fully offline for up to 30 minutes.\n\nTo prevent any potential data loss, you must save all active sessions and finalize database transactions prior to 1:45 AM EST on Saturday. We appreciate your immediate attention to this notice and apologize for any inconvenience.\n\nBest regards,\n[Your Name]",
+          "latency_seconds": 25.89,
+          "metrics": {
+            "fact_recall": {
+              "score": 1.0,
+              "reason": "Recalled 4 out of 4 facts. Analysis: All required key facts are present in the generated email. The facts are recalled verbatim or semantically."
+            },
+            "tone_adherence": {
+              "score": 0.75,
+              "reason": "Tone Adherence score: 4/5. Reasoning: The email uses words like 'critical', 'maintenance window', 'disruption', and 'inconvenience' which convey a sense of urgency. The structure is direct and to the point, which is suitable for an urgent tone. However, there are a few minor choices that could be adjusted to make the tone even more urgent."
+            },
+            "structure_polish": {
+              "score": 1.0,
+              "reason": "Combined score: 1.00 (Programmatic: 100%, LLM: 100%). Details: Greeting found, Sign-off found. LLM Analysis: The email is well-structured and free of conversational meta-talk. It clearly states the maintenance window, the expected disruption, and the steps to minimize the impact. The tone is professional and polite, and the language is concise and easy to understand."
+            },
+            "average_score": 0.9166666666666666
+          },
+          "status": "success"
+        },
+        {
+          "scenario_id": 8,
+          "intent": "Request a contract discount from a SaaS platform vendor during renewal negotiations",
+          "tone": "formal",
+          "thinking": "The tone is formal, so I will address the vendor directly, mention our 3-year partnership, highlight the license expansion, and clearly state the requested discount. I will also reference the upcoming contract renewal to emphasize the importance of the discount.",
+          "subject": "Contract Renewal Negotiation - Request for Volume Discount",
+          "generated_body": "Dear [Vendor Representative],\n\nI hope this email finds you well. As we approach our annual contract renewal next month, I would like to discuss the possibility of a volume discount on our expanded license count.\n\nAs you are aware, our company has been a valued customer of your SaaS platform for the past three years, and we are pleased to be expanding our license count from 50 seats to 150 seats. Given our long-standing partnership and the significant increase in our license requirements, we believe that a 15% volume discount on the expanded seat license cost is reasonable and in line with industry standards.\n\nWe would appreciate it if you could consider this request and provide a revised quote reflecting the discount. If there are any concerns or additional information required from our end, please do not hesitate to reach out.\n\nThank you for your attention to this matter, and we look forward to hearing from you soon.\n\nBest regards,\n[Your Name]",
+          "reference_email": "Subject: Contract Renewal Negotiations & License Expansion Inquiry\n\nDear [Name],\n\nAs our annual contract renewal approaches next month, I would like to discuss our account terms. We have been very pleased with our 3-year partnership with your SaaS platform.\n\nDue to our team's growth, we are planning to significantly expand our utilization from the current 50 seats to 150 seats at this renewal. Given this threefold increase in our commitment, we would like to request a 15% volume discount on the expanded seat license pricing.\n\nI look forward to discussing how we can finalize this contract renewal. Please let me know when you are available for a brief call to discuss.\n\nBest regards,\n[Your Name]",
+          "latency_seconds": 29.2,
+          "metrics": {
+            "fact_recall": {
+              "score": 1.0,
+              "reason": "Recalled 4 out of 4 facts. Analysis: All required key facts were included in the generated email, with the following facts being recalled: \n- Company has been a customer of the SaaS platform for 3 years. (Present: 'our company has been a valued customer of your SaaS platform for the past three years') \n- Planning to expand license count from 50 seats to 150 seats. (Present: 'expanding our license count from 50 seats to 150 seats') \n- Annual billing contract renewal is next month. (Present: 'As we approach our annual contract renewal next month') \n- Requesting a 15% volume discount on the expanded seat license cost. (Present: 'a 15% volume discount on the expanded seat license cost is reasonable and in line with industry standards')"
+            },
+            "tone_adherence": {
+              "score": 1.0,
+              "reason": "Tone Adherence score: 5/5. Reasoning: The email's vocabulary, structure, and pacing are all perfectly suited to a formal tone. The language is professional, the structure is clear and logical, and the pacing is well-balanced. Overall, the email feels natural and appropriate for a formal tone."
+            },
+            "structure_polish": {
+              "score": 1.0,
+              "reason": "Combined score: 1.00 (Programmatic: 100%, LLM: 100%). Details: Greeting found, Sign-off found. LLM Analysis: The email is well-structured and clearly communicates the request for a volume discount. It provides context about the company's long-standing partnership and the significant increase in license requirements. The tone is professional and polite."
+            },
+            "average_score": 1.0
+          },
+          "status": "success"
+        },
+        {
+          "scenario_id": 9,
+          "intent": "Congratulate a colleague on a promotion and organize team drinks",
+          "tone": "casual",
+          "thinking": "The tone is casual, so I'll write a friendly and congratulatory email. I'll mention David's promotion and the outstanding job he did on the database migration project. I'll also invite the team to celebrate with drinks at the pub on Friday at 5:00 PM.",
+          "subject": "Huge Congrats, David! Team Drinks on Friday!",
+          "generated_body": "Hey Team,\n\nA huge congratulations to David Chen on his well-deserved promotion to Engineering Manager! We're all thrilled to see him take on this new role.\n\nDavid's outstanding leadership on the complex database migration project was a key factor in his promotion, and we're all grateful for his hard work and dedication.\n\nLet's celebrate David's achievement with team drinks at the pub down the road on Friday at 5:00 PM. Hope to see you all there!\n\nCheers,\n[Name]",
+          "reference_email": "Subject: Congrats to David Chen! (Plus team drinks Friday 🍻)\n\nHi everyone,\n\nI wanted to share some awesome news: David Chen has been promoted to Engineering Manager!\n\nAs many of you know, David did an absolutely outstanding job leading the complex database migration project over the last few months. This promotion is incredibly well-deserved.\n\nTo celebrate, we are meeting up for team drinks at the pub down the road this Friday at 5:00 PM. Please swing by, grab a drink, and congratulate David in person!\n\nCheers,\n[Your Name]",
+          "latency_seconds": 24.67,
+          "metrics": {
+            "fact_recall": {
+              "score": 1.0,
+              "reason": "Recalled 3 out of 3 facts. Analysis: All required key facts were included in the email, with some minor variations in wording. The fact about David's promotion was mentioned verbatim, the fact about his leadership on the database migration project was mentioned semantically, and the fact about team drinks was mentioned verbatim."
+            },
+            "tone_adherence": {
+              "score": 1.0,
+              "reason": "Tone Adherence score: 5/5. Reasoning: The email has a perfect match for the 'casual' tone, with informal vocabulary, a clear and concise structure, and a good balance of short and long sentences. The language used feels natural and appropriate for a casual tone, and the email effectively conveys a sense of celebration and congratulations."
+            },
+            "structure_polish": {
+              "score": 1.0,
+              "reason": "Combined score: 1.00 (Programmatic: 100%, LLM: 100%). Details: Greeting found, Sign-off found. LLM Analysis: The email has a clear and concise structure, with a formal greeting, a body that provides context and celebrates the achievement, and a closing that invites the team to celebrate. There is no conversational meta-talk."
+            },
+            "average_score": 1.0
+          },
+          "status": "success"
+        },
+        {
+          "scenario_id": 10,
+          "intent": "Ask the landlord to fix an emergency plumbing leak in the apartment",
+          "tone": "urgent",
+          "thinking": "The tone is urgent because a significant water leak is causing potential structural damage and needs to be addressed immediately. I will plan to address the landlord directly, list the apartment number, describe the leak, reference the discovery on Thursday, and ask for urgent plumber dispatch without filler.",
+          "subject": "URGENT: Emergency Plumbing Leak in Apartment 4B",
+          "generated_body": "Dear [Landlord's Name],\n\nWe have an urgent plumbing issue in Apartment 4B that requires immediate attention. On Thursday morning, a significant water leak was discovered under the kitchen sink, and it heavily leaks when the dishwasher runs. To prevent further damage, the water shutoff valve has been turned off. However, we still need urgent plumber dispatch to fix the issue as soon as possible.\n\nPlease arrange for a plumber to visit the apartment at your earliest convenience to prevent any potential structural damage.\n\nThank you for your prompt attention to this matter.\n\nBest regards,\n[Your Name]",
+          "reference_email": "Subject: EMERGENCY PLUMBING LEAK: Apartment 4B - Immediate Plumber Required\n\nDear Landlord,\n\nI am writing to report a critical plumbing emergency in Apartment 4B.\n\nThis morning, Thursday, I discovered a significant water leak pooling water under the kitchen sink. The leak is particularly severe and flows heavily whenever the dishwasher runs. To prevent further damage to the floors and cabinetry, I have shut off the water valve under the sink.\n\nPlease dispatch an emergency plumber to Apartment 4B immediately. This is an urgent issue that requires prompt attention to avoid structural damage.\n\nSincerely,\n[Your Name]",
+          "latency_seconds": 25.1,
+          "metrics": {
+            "fact_recall": {
+              "score": 1.0,
+              "reason": "Recalled 4 out of 4 facts. Analysis: All required key facts are present in the email, either verbatim or semantically. The email accurately describes the urgent plumbing issue in Apartment 4B, including the discovery of the water leak on Thursday morning, the heavy leaking when the dishwasher runs, the turning off of the water shutoff valve, and the need for urgent plumber dispatch to prevent structural damage."
+            },
+            "tone_adherence": {
+              "score": 0.75,
+              "reason": "Tone Adherence score: 4/5. Reasoning: The email aligns mostly with the 'urgent' tone, using vocabulary and structure that convey a sense of urgency. However, minor adjustments could be made to make it feel even more natural and appropriate. For example, the phrase 'at your earliest convenience' could be replaced with something more direct."
+            },
+            "structure_polish": {
+              "score": 0.85,
+              "reason": "Combined score: 0.85 (Programmatic: 100%, LLM: 75%). Details: Greeting found, Sign-off found. LLM Analysis: The email is well-structured, but it could be improved by removing the phrase 'at your earliest convenience' which is a polite expression that can be considered as conversational meta-talk. However, the overall flow and structure of the email are good."
+            },
+            "average_score": 0.8666666666666667
+          },
+          "status": "success"
+        }
+      ]
+    },
+    "openai/gpt-oss-120b": {
+      "aggregates": {
+        "average_fact_recall": 1.0,
+        "average_tone_adherence": 0.775,
+        "average_structure_polish": 0.91,
+        "overall_average_score": 0.895,
+        "average_latency_seconds": 1.72
+      },
+      "runs": [
+        {
+          "scenario_id": 1,
+          "intent": "Follow up after a client meeting to request feedback on the proposal draft",
+          "tone": "formal",
+          "thinking": "The tone is formal because this is a post‑meeting follow‑up with a client regarding a proposal that impacts the project schedule. I will start with a courteous greeting, reference the meeting on Tuesday about the Q3 marketing campaign, note that the proposal draft was sent on Wednesday afternoon, and then request the client’s feedback. I will specify the deadline (Friday 5:00 PM local time) and explain that timely feedback is needed to keep the project on schedule. I will close with a polite closing and my contact information, maintaining a professional tone throughout.",
+          "subject": "Follow‑Up: Request for Feedback on Q3 Marketing Campaign Proposal",
+          "generated_body": "Dear [Client Name],\n\nI hope you are well. Thank you for meeting with us on Tuesday to discuss the upcoming Q3 marketing campaign project. Following our discussion, we sent the draft proposal to you on Wednesday afternoon for your review.\n\nTo ensure we remain on schedule, could you please provide your feedback by Friday at 5:00 PM local time? Your input is essential for finalizing the plan and moving forward with the implementation phase as planned.\n\nIf you have any questions or require further clarification on any part of the proposal, please do not hesitate to contact me.\n\nThank you for your attention to this matter. I look forward to your response.\n\nBest regards,\n[Your Name]\n[Your Title]\n[Your Company]\n[Phone Number]\n[Email Address]",
+          "reference_email": "Subject: Follow-up: Q3 Marketing Campaign Proposal Feedback Request\n\nDear [Name],\n\nI hope this email finds you well.\n\nIt was a pleasure meeting with you on Tuesday to discuss our plans for the Q3 marketing campaign project. As agreed, I sent over the draft proposal for your review on Wednesday afternoon.\n\nTo ensure we keep our launch timeline on schedule, could you please share your feedback on the proposal by Friday at 5:00 PM local time? If you need additional time or have any immediate questions, please let me know.\n\nBest regards,\n[Your Name]",
+          "latency_seconds": 1.47,
+          "metrics": {
+            "fact_recall": {
+              "score": 1.0,
+              "reason": "Recalled 3 out of 3 facts. Analysis: All required key facts were recalled in the email, either verbatim or semantically. The facts were recalled as follows: \n- Met on Tuesday to discuss the Q3 marketing campaign project. (Recalled verbatim: 'Met on Tuesday to discuss the upcoming Q3 marketing campaign project.')\n- Sent the proposal draft on Wednesday afternoon. (Recalled verbatim: 'Following our discussion, we sent the draft proposal to you on Wednesday afternoon for your review.')\n- Feedback is requested by Friday at 5:00 PM local time to keep the project timeline on schedule. (Recalled semantically: 'To ensure we remain on schedule, could you please provide your feedback by Friday at 5:00 PM local time?')"
+            },
+            "tone_adherence": {
+              "score": 0.75,
+              "reason": "Tone Adherence score: 4/5. Reasoning: The email mostly aligns with the formal tone, but there are a few minor choices that could be adjusted. For example, the phrase 'I hope you are well' is a common casual greeting, but it's not entirely out of place in a formal email. The language used is professional and polished, and the structure is clear and concise. However, the tone could be even more formal if the sender avoided using phrases like 'Thank you for your attention to this matter' and instead used more direct language."
+            },
+            "structure_polish": {
+              "score": 0.85,
+              "reason": "Combined score: 0.85 (Programmatic: 100%, LLM: 75%). Details: Greeting found, Sign-off found. LLM Analysis: The email has a good structure, but it contains conversational meta-talk in the form of 'Thank you for your attention to this matter' and 'I look forward to your response.' The layout of the email is good, but it could be improved by removing the conversational meta-talk and adding a more formal closing."
+            },
+            "average_score": 0.8666666666666667
+          },
+          "status": "success"
+        },
+        {
+          "scenario_id": 2,
+          "intent": "Apologize for a shipping delay on a customer order and offer compensation",
+          "tone": "empathetic",
+          "thinking": "The tone must be empathetic, so I will start with a sincere apology and acknowledge the inconvenience. I will reference the order number (#10842) early to personalize the message. I will explain the cause (severe winter weather at our Midwest logistics hub) to provide context without making excuses. I will state the new expected delivery date (June 22nd) clearly. Then I will offer the $15 credit as compensation, phrasing it as a gesture of goodwill. I will close with appreciation for the customer's patience and a courteous sign‑off.",
+          "subject": "Our Apology – Shipping Delay for Order #10842",
+          "generated_body": "Hi [Customer Name],\n\nI’m writing to sincerely apologize for the delay in delivering your order #10842. Unfortunately, severe winter weather at our Midwest logistics hub disrupted our shipping schedule, and we understand how frustrating this can be.\n\nWe now expect your package to arrive on June 22nd. To make up for the inconvenience, we’d like to offer you a $15 credit toward your next purchase with us. The credit will be automatically applied to your account and can be used at any time.\n\nThank you for your patience and understanding. If you have any questions or need further assistance, please don’t hesitate to reach out.\n\nWarm regards,\n[Your Name]\nCustomer Experience Team",
+          "reference_email": "Subject: Important update regarding your order #10842\n\nDear [Name],\n\nI am writing to sincerely apologize for a delay in delivery for your order #10842.\n\nDue to severe winter weather at our Midwest logistics hub, shipping routes have been temporarily disrupted, affecting your order's transit. We are doing everything we can to expedite this, and your new expected delivery date is now June 22. \n\nI know how frustrating shipping delays can be. To help make this right, we've applied a $15 credit to your account, which will automatically deduct from your next purchase. \n\nThank you so much for your patience and understanding.\n\nWarmly,\n[Your Name]",
+          "latency_seconds": 1.66,
+          "metrics": {
+            "fact_recall": {
+              "score": 1.0,
+              "reason": "Recalled 4 out of 4 facts. Analysis: All required key facts were successfully included in the email. The facts were recalled verbatim or semantically."
+            },
+            "tone_adherence": {
+              "score": 0.75,
+              "reason": "Tone Adherence score: 4/5. Reasoning: The email aligns well with the 'empathetic' tone, using phrases like 'sincerely apologize' and 'understand how frustrating this can be.' However, the tone feels slightly formal in places, such as the use of 'Warm regards' and 'Customer Experience Team.' The offer of a $15 credit is a nice touch, but the language used to describe it feels a bit generic. Overall, the tone is mostly empathetic, but with some minor adjustments, it could feel even more natural and sincere."
+            },
+            "structure_polish": {
+              "score": 1.0,
+              "reason": "Combined score: 1.00 (Programmatic: 100%, LLM: 100%). Details: Greeting found, Sign-off found. LLM Analysis: The email is well-structured and free of conversational meta-talk. It includes a clear apology, a specific delivery date, and a gesture of goodwill in the form of a credit. The tone is professional and polite, and the language is concise and easy to understand."
+            },
+            "average_score": 0.9166666666666666
+          },
+          "status": "success"
+        },
+        {
+          "scenario_id": 3,
+          "intent": "Request a deadline extension for the quarterly financial report",
+          "tone": "formal",
+          "thinking": "The tone is formal, so I will use courteous language, a clear structure, and professional phrasing. I will start with a respectful greeting, state the current deadline (Monday, June 22nd), explain the cause of the delay (late data release from the European division), and then request a new deadline (Thursday, June 25th). I will also mention the ability to provide a partial draft on the original deadline to demonstrate progress and commitment. The email will close with a polite thank‑you and a professional sign‑off.",
+          "subject": "Request for Extension of Quarterly Financial Report Deadline",
+          "generated_body": "Dear [Recipient’s Name],\n\nI hope this message finds you well. I am writing to request an extension for the submission of the quarterly financial report, which is currently due on Monday, June 22nd.\n\nUnfortunately, we have experienced a delay in receiving the necessary data from our European division. This late data release has impacted our ability to complete the report by the original deadline.\n\nIn light of this, I respectfully request that the new submission deadline be moved to Thursday, June 25th. To keep the process transparent, I can provide a partial draft of the sections that have been completed by Monday, June 22nd.\n\nThank you for your understanding and consideration of this request. Please let me know if you require any additional information.\n\nSincerely,\n[Your Name]\n[Your Position]\n[Your Contact Information]",
+          "reference_email": "Subject: Extension Request: Quarterly Financial Report\n\nDear [Name],\n\nI am writing to formally request a brief extension for the submission of the quarterly financial report, which is currently scheduled for Monday, June 22nd.\n\nUnfortunately, we have experienced an unexpected delay in receiving the final figures from our European division. As a result, we require additional time to integrate their data and ensure the report's accuracy. I would like to request a new submission deadline of Thursday, June 25th.\n\nIn the meantime, I can share a partial draft containing all other completed sections this Monday for your preliminary review. Thank you for your consideration and understanding.\n\nSincerely,\n[Your Name]",
+          "latency_seconds": 1.54,
+          "metrics": {
+            "fact_recall": {
+              "score": 1.0,
+              "reason": "Recalled 4 out of 4 facts. Analysis: All required key facts are present in the email, either verbatim or semantically."
+            },
+            "tone_adherence": {
+              "score": 1.0,
+              "reason": "Tone Adherence score: 5/5. Reasoning: The email's vocabulary, structure, and pacing perfectly match the 'formal' tone. The language used is professional and formal, the structure is clear and logical, and the pacing is well-balanced. There are no major deviations or mismatched style, making the email feel natural and appropriate for the requested tone."
+            },
+            "structure_polish": {
+              "score": 0.85,
+              "reason": "Combined score: 0.85 (Programmatic: 100%, LLM: 75%). Details: Greeting found, Sign-off found. LLM Analysis: The email provides a clear explanation of the reason for the request, the impact of the delay, and the proposed solution. It also shows appreciation for the recipient's understanding and consideration."
+            },
+            "average_score": 0.9500000000000001
+          },
+          "status": "success"
+        },
+        {
+          "scenario_id": 4,
+          "intent": "Decline a job candidate after they reached the final interview stage",
+          "tone": "empathetic",
+          "thinking": "The tone must be empathetic, acknowledging Sarah's strong qualifications while delivering a disappointing decision. I will start with a courteous greeting using her name, then thank her for her time and effort throughout the interview process. I will note that the decision was very difficult because her technical skills and background are excellent, directly reflecting the key facts. I will explain that the hiring team chose another candidate who has more experience with test automation frameworks, providing a clear but respectful reason. Finally, I will wish her success in her career and keep the door open for future opportunities, ending with a professional sign‑off.",
+          "subject": "Update on Your Senior QA Engineer Application",
+          "generated_body": "Hi Sarah,\n\nThank you for investing your time and energy in our interview process for the Senior QA Engineer role. It was a pleasure getting to know you and learning about your impressive technical skills and background.\n\nThe decision was very difficult for our hiring team because your qualifications are excellent. After careful consideration, we have selected another candidate who brings more extensive experience with test automation frameworks.\n\nWe truly appreciate your interest in joining our company and wish you continued success in your career. Please feel free to stay in touch, and we would be happy to consider you for future opportunities that align with your expertise.\n\nWarm regards,\n[Your Name]\n[Your Title]\n[Company Name]",
+          "reference_email": "Subject: Interview Update: Senior QA Engineer role at [Company]\n\nDear Sarah,\n\nThank you so much for taking the time to meet with our team during the final interview stage for the Senior QA Engineer position.\n\nThis was an incredibly difficult decision for the team. We were deeply impressed by your technical skills and your excellent QA background. However, we have decided to move forward with another candidate whose experience aligns more closely with the specific test automation frameworks we are building out.\n\nWe appreciate the enthusiasm and expertise you shared with us. We would love to stay in touch and keep you in mind for future roles that fit your background.\n\nWishing you all the best in your search.\n\nBest regards,\n[Your Name]",
+          "latency_seconds": 1.53,
+          "metrics": {
+            "fact_recall": {
+              "score": 1.0,
+              "reason": "Recalled 3 out of 3 facts. Analysis: The email includes all required key facts. The facts are recalled verbatim or semantically. The candidate's name, role, and qualifications are mentioned. The decision-making process and the reason for selecting another candidate are also described."
+            },
+            "tone_adherence": {
+              "score": 0.5,
+              "reason": "Tone Adherence score: 3/5. Reasoning: The email uses formal and professional language, but shows some understanding and support. However, it could be more empathetic in its approach. Vocabulary and structure are somewhat mismatched, but pacing is good."
+            },
+            "structure_polish": {
+              "score": 1.0,
+              "reason": "Combined score: 1.00 (Programmatic: 100%, LLM: 100%). Details: Greeting found, Sign-off found. LLM Analysis: The email is well-structured and free of conversational meta-talk. It starts with a formal greeting, expresses gratitude, and provides a clear explanation of the decision. The tone is professional, and the language is polite. The email ends with a warm closing and an invitation to stay in touch, which is a good practice."
+            },
+            "average_score": 0.8333333333333334
+          },
+          "status": "success"
+        },
+        {
+          "scenario_id": 5,
+          "intent": "Send a payment reminder for an outstanding invoice",
+          "tone": "urgent",
+          "thinking": "The tone must be urgent because the client owes a significant amount and service may be suspended. I will start with a direct greeting, then reference the invoice number #INV-2026-904 and the original due date (June 1st). I will state the outstanding balance of $4,500 and note that this is the second reminder, which adds pressure. I will explicitly request immediate payment processing and warn that failure to pay will result in a temporary suspension of services. The email will close with a polite but firm sign‑off, reinforcing the urgency without being rude.",
+          "subject": "URGENT: Second Payment Reminder – Invoice #INV-2026-904 ($4,500)",
+          "generated_body": "Hi [Recipient Name],\n\nThis is a second reminder regarding Invoice #INV-2026-904, which was originally due on June 1st. The outstanding balance remains at $4,500.\n\nTo avoid a temporary suspension of your services, please process the payment immediately. If you have already sent the payment, kindly disregard this notice and accept our thanks.\n\nShould you have any questions or need assistance with the payment process, feel free to contact me directly.\n\nThank you for your prompt attention to this matter.\n\nBest regards,\n[Your Name]\n[Your Title]\n[Company Name]\n[Contact Information]",
+          "reference_email": "Subject: URGENT: Outstanding Payment for Invoice #INV-2026-904\n\nDear [Name],\n\nThis is our second reminder that invoice #INV-2026-904 for $4,500 remains outstanding. This invoice was originally due on June 1st.\n\nPlease process this payment immediately. If we do not receive payment or confirmation of payment processing within the next 48 hours, we will be forced to temporarily suspend your active services until the account is brought current.\n\nIf payment has already been sent, please email us a copy of the receipt so we can update our records.\n\nThank you for your prompt attention to this matter.\n\nSincerely,\n[Your Name]",
+          "latency_seconds": 1.52,
+          "metrics": {
+            "fact_recall": {
+              "score": 1.0,
+              "reason": "Recalled 4 out of 4 facts. Analysis: All required key facts were included in the generated email, with some minor variations in wording. The invoice number, original due date, outstanding balance, and request for immediate payment processing were all present, either verbatim or semantically."
+            },
+            "tone_adherence": {
+              "score": 0.5,
+              "reason": "Tone Adherence score: 3/5. Reasoning: The email is well-structured and uses formal language, but the tone may be slightly too polite and formal to convey a strong sense of urgency. Vocabulary and structure mostly align with the 'urgent' tone, but minor adjustments could be made to better match the desired tone."
+            },
+            "structure_polish": {
+              "score": 0.4,
+              "reason": "Combined score: 0.40 (Programmatic: 100%, LLM: 0%). Details: Greeting found, Sign-off found, Contains conversational LLM fluff/meta-text. LLM Analysis: The email contains conversational meta-talk and has a suboptimal paragraph layout. The conversational LLM text is present in the form of 'This is a second reminder'. The paragraph layout is not ideal, as the second paragraph is not clearly separated from the first one."
+            },
+            "average_score": 0.6333333333333333
+          },
+          "status": "success"
+        },
+        {
+          "scenario_id": 6,
+          "intent": "Invite team members to a casual dinner to celebrate a product release",
+          "tone": "casual",
+          "thinking": "The tone is casual, so I will use friendly language and a relaxed structure. I will start with a warm greeting, mention the reason for the dinner (celebrating the successful release of product version 3.0), give the venue details (Tony's Pizzeria on 5th Avenue), and specify the date and time (Thursday at 7:00 PM). I will also include a clear but informal RSVP request, asking colleagues to reply by Tuesday noon so we can finalize the reservation. The closing will be upbeat and include a simple sign‑off.",
+          "subject": "Team Dinner to Celebrate v3.0 Release 🎉",
+          "generated_body": "Hi everyone,\n\nWe’ve just rolled out product version 3.0 – a huge win for the team! To celebrate, I’d love to get together for a casual dinner.\n\n**When:** Thursday at 7:00 PM\n**Where:** Tony's Pizzeria, 5th Avenue\n\nPlease let me know if you can make it by Tuesday noon so I can lock in the reservation.\n\nLooking forward to raising a slice with you all!\n\nBest,\n[Your Name]",
+          "reference_email": "Subject: Celebration dinner on Thursday: Product v3.0 is live! 🍕\n\nHey team,\n\nWe did it! Product version 3.0 is officially live, and we deserve a celebration.\n\nI'm hosting a casual team dinner this Thursday at 7:00 PM at Tony's Pizzeria on 5th Avenue. It'll be a great chance to kick back, eat some good food, and celebrate all the hard work everyone put in.\n\nPlease let me know if you can make it by RSVPing by Tuesday at noon so I can get the reservation finalized. Hope to see you all there!\n\nBest,\n[Your Name]",
+          "latency_seconds": 2.83,
+          "metrics": {
+            "fact_recall": {
+              "score": 1.0,
+              "reason": "Recalled 5 out of 4 facts. Analysis: The email successfully recalled all required key facts, including the occasion (product version 3.0 release), venue (Tony's Pizzeria on 5th Avenue), date and time (Thursday at 7:00 PM), and RSVP deadline (Tuesday noon)."
+            },
+            "tone_adherence": {
+              "score": 1.0,
+              "reason": "Tone Adherence score: 5/5. Reasoning: The email uses informal language, has a clear and concise structure, and a good balance of short and long sentences, which aligns well with the 'casual' tone."
+            },
+            "structure_polish": {
+              "score": 1.0,
+              "reason": "Combined score: 1.00 (Programmatic: 100%, LLM: 100%). Details: Greeting found, Sign-off found. LLM Analysis: The email has a clear and concise structure, with a formal greeting, a brief message, and a polite closing. However, it does not contain any conversational meta-talk."
+            },
+            "average_score": 1.0
+          },
+          "status": "success"
+        },
+        {
+          "scenario_id": 7,
+          "intent": "Notify stakeholders of an upcoming critical database server maintenance window",
+          "tone": "urgent",
+          "thinking": "The tone must be urgent because a critical database server maintenance could affect business operations. I will start with a clear, attention‑grabbing subject line that mentions urgency and the maintenance window. In the body, I will greet stakeholders briefly, state the purpose (notification of upcoming maintenance), and then map each key fact: (1) identify the core database server, (2) specify the exact date and time (Saturday, June 20, 2026, 2:00‑5:00 AM EST), (3) highlight that up to 30 minutes of complete offline disruption may occur, and (4) instruct users to save all active sessions and transactions before 1:45 AM EST. I will close with a request for acknowledgment and an apology for any inconvenience, maintaining an urgent yet professional tone.",
+          "subject": "URGENT: Critical Database Server Maintenance – Service Impact Expected June 20",
+          "generated_body": "Hi All,\n\nPlease be advised of an upcoming critical maintenance window for our core database server. The maintenance is scheduled for **Saturday, June 20, 2026, from 2:00 AM to 5:00 AM EST**.\n\nDuring this window we anticipate **up to 30 minutes of complete offline service disruption**. To minimize impact, **all active sessions and transactions must be saved no later than 1:45 AM EST**.\n\nWe appreciate your prompt attention to this matter and apologize for any inconvenience caused. Please acknowledge receipt of this notice and let us know if you have any concerns.\n\nThank you for your cooperation.\n\nBest regards,\n[Your Name]\n[Your Title]\n[Company Name]",
+          "reference_email": "Subject: CRITICAL NOTICE: Database Server Maintenance & Outage Window - June 20\n\nDear Stakeholders,\n\nPlease be advised that we will be conducting critical server maintenance on our core database this coming Saturday, June 20, 2026.\n\nThe maintenance window is scheduled from 2:00 AM to 5:00 AM EST. During this period, the system will experience a complete service disruption and will be fully offline for up to 30 minutes.\n\nTo prevent any potential data loss, you must save all active sessions and finalize database transactions prior to 1:45 AM EST on Saturday. We appreciate your immediate attention to this notice and apologize for any inconvenience.\n\nBest regards,\n[Your Name]",
+          "latency_seconds": 1.66,
+          "metrics": {
+            "fact_recall": {
+              "score": 1.0,
+              "reason": "Recalled 4 out of 4 facts. Analysis: All required key facts were included in the generated email. The facts were present either verbatim or semantically."
+            },
+            "tone_adherence": {
+              "score": 0.75,
+              "reason": "Tone Adherence score: 4/5. Reasoning: The email effectively conveys a sense of urgency through its vocabulary, structure, and pacing. However, a few minor adjustments could be made to make the tone feel even more urgent. The use of words like 'critical', 'maintenance window', and 'offline service disruption' effectively convey a sense of importance, and the email is well-structured and concise. However, the use of the word 'please' in the first sentence could be replaced with a more direct phrase, and the sentence 'We appreciate your prompt attention to this matter and apologize for any inconvenience caused' could be rephrased to focus more on the urgency of the situation."
+            },
+            "structure_polish": {
+              "score": 1.0,
+              "reason": "Combined score: 1.00 (Programmatic: 100%, LLM: 100%). Details: Greeting found, Sign-off found. LLM Analysis: The email is well-structured and free of conversational meta-talk. It clearly states the purpose, provides necessary details, and includes a polite closing. However, it could benefit from a more formal tone and avoiding phrases like 'Please be advised' which can be seen as conversational."
+            },
+            "average_score": 0.9166666666666666
+          },
+          "status": "success"
+        },
+        {
+          "scenario_id": 8,
+          "intent": "Request a contract discount from a SaaS platform vendor during renewal negotiations",
+          "tone": "formal",
+          "thinking": "The tone must be formal, reflecting a professional business negotiation. I will start with a courteous greeting and reference the long‑term (3‑year) relationship to establish goodwill. Then I will state the upcoming renewal next month and the planned increase from 50 to 150 seats, highlighting the significant volume growth. I will explicitly request a 15% discount on the expanded license cost, framing it as a mutually beneficial arrangement. Finally, I will close with a polite request for confirmation and a professional sign‑off. All key facts are incorporated in a logical order without filler.",
+          "subject": "Request for Volume Discount on Upcoming Renewal",
+          "generated_body": "Dear [Vendor Account Manager],\n\nI hope you are well. I am writing on behalf of [Your Company] regarding our annual renewal of the SaaS platform contract, which is scheduled for next month.\n\nAs you know, we have been a satisfied customer for the past three years. In preparation for the upcoming renewal, we plan to expand our license count from the current 50 seats to 150 seats to support our growing team.\n\nGiven this substantial increase in volume, we would like to request a 15% discount on the license fees for the expanded seat count. We believe this adjustment reflects the long‑term partnership we have built and will enable us to continue leveraging your platform effectively.\n\nCould you please confirm whether this discount can be applied to our renewal agreement? We appreciate your consideration and look forward to your response.\n\nThank you for your attention to this matter.\n\nSincerely,\n[Your Name]\n[Your Title]\n[Your Company]\n[Contact Information]",
+          "reference_email": "Subject: Contract Renewal Negotiations & License Expansion Inquiry\n\nDear [Name],\n\nAs our annual contract renewal approaches next month, I would like to discuss our account terms. We have been very pleased with our 3-year partnership with your SaaS platform.\n\nDue to our team's growth, we are planning to significantly expand our utilization from the current 50 seats to 150 seats at this renewal. Given this threefold increase in our commitment, we would like to request a 15% volume discount on the expanded seat license pricing.\n\nI look forward to discussing how we can finalize this contract renewal. Please let me know when you are available for a brief call to discuss.\n\nBest regards,\n[Your Name]",
+          "latency_seconds": 1.7,
+          "metrics": {
+            "fact_recall": {
+              "score": 1.0,
+              "reason": "Recalled 4 out of 4 facts. Analysis: All required key facts were included in the generated email, with the following details:\n- Company has been a customer of the SaaS platform for 3 years (mentioned as 'satisfied customer for the past three years').\n- Planning to expand license count from 50 seats to 150 seats (mentioned as 'expand our license count from the current 50 seats to 150 seats').\n- Annual billing contract renewal is next month (mentioned as 'annual renewal of the SaaS platform contract, which is scheduled for next month').\n- Requesting a 15% volume discount on the expanded seat license cost (mentioned as 'request a 15% discount on the license fees for the expanded seat count')."
+            },
+            "tone_adherence": {
+              "score": 0.75,
+              "reason": "Tone Adherence score: 4/5. Reasoning: The email uses formal vocabulary, such as 'satisfied customer', 'long-term partnership', and 'substantial increase in volume'. However, some phrases, like 'I hope you are well' and 'we appreciate your consideration', could be considered slightly informal. The email follows a clear and formal structure, with a clear introduction, body, and closing. The pacing of the email is well-balanced, with a good mix of formal and polite language."
+            },
+            "structure_polish": {
+              "score": 1.0,
+              "reason": "Combined score: 1.00 (Programmatic: 100%, LLM: 100%). Details: Greeting found, Sign-off found. LLM Analysis: The email is well-structured, with a clear introduction, body, and closing. The language is professional, and the tone is polite and respectful. The email includes a clear request for a discount and a polite closing."
+            },
+            "average_score": 0.9166666666666666
+          },
+          "status": "success"
+        },
+        {
+          "scenario_id": 9,
+          "intent": "Congratulate a colleague on a promotion and organize team drinks",
+          "tone": "casual",
+          "thinking": "The tone is casual and celebratory. I will start with a friendly greeting, then congratulate David on his promotion to Engineering Manager, highlighting his outstanding work on the complex database migration project. Next, I’ll transition to the invitation for team drinks, specifying the location (the pub down the road), day (Friday), and time (5:00 PM). I’ll close with an upbeat sign‑off encouraging everyone to join and keep the vibe relaxed.",
+          "subject": "Congrats on your promotion, David! 🎉 Team drinks Friday at 5 PM",
+          "generated_body": "Hey David,\n\nHuge congratulations on your promotion to Engineering Manager! 🎉 Your leadership on the complex database migration project was truly outstanding, and it’s great to see your hard work recognized.\n\nTo celebrate, we’re gathering for drinks at the pub down the road this Friday at 5:00 PM. It’ll be a relaxed get‑together, and we’d love for you to join us and the rest of the team.\n\nHope you can make it—let me know if you need any details.\n\nCheers,\n[Your Name]",
+          "reference_email": "Subject: Congrats to David Chen! (Plus team drinks Friday 🍻)\n\nHi everyone,\n\nI wanted to share some awesome news: David Chen has been promoted to Engineering Manager!\n\nAs many of you know, David did an absolutely outstanding job leading the complex database migration project over the last few months. This promotion is incredibly well-deserved.\n\nTo celebrate, we are meeting up for team drinks at the pub down the road this Friday at 5:00 PM. Please swing by, grab a drink, and congratulate David in person!\n\nCheers,\n[Your Name]",
+          "latency_seconds": 1.71,
+          "metrics": {
+            "fact_recall": {
+              "score": 1.0,
+              "reason": "Recalled 3 out of 3 facts. Analysis: All required key facts were recalled in the email. The facts were recalled verbatim or semantically."
+            },
+            "tone_adherence": {
+              "score": 0.75,
+              "reason": "Tone Adherence score: 4/5. Reasoning: The email's vocabulary and structure mostly align with the 'casual' tone, but minor choices could be adjusted. The use of colloquial expressions like 'Huge congratulations' and 'Cheers' suggests a casual tone, but the formal language used in the congratulatory message slightly detracts from the overall casual feel. The email's structure and pacing are well-balanced and consistent with a casual tone."
+            },
+            "structure_polish": {
+              "score": 1.0,
+              "reason": "Combined score: 1.00 (Programmatic: 100%, LLM: 100%). Details: Greeting found, Sign-off found. LLM Analysis: The email has a clear and concise structure, with a formal greeting, a brief congratulatory message, and a clear invitation to a social event. The tone is professional and polite, without any conversational meta-talk."
+            },
+            "average_score": 0.9166666666666666
+          },
+          "status": "success"
+        },
+        {
+          "scenario_id": 10,
+          "intent": "Ask the landlord to fix an emergency plumbing leak in the apartment",
+          "tone": "urgent",
+          "thinking": "The tone must be urgent because there is an active water leak that could cause structural damage. I will address the landlord directly, identify the tenant's unit (Apartment 4B), describe the leak discovery time (Thursday morning) and location (pooling under the kitchen sink), note that it worsens when the dishwasher runs, and state that the water shutoff valve has already been turned off. I will then request an immediate plumber dispatch, emphasizing the risk of further damage, and close with a polite but firm request for prompt confirmation.",
+          "subject": "URGENT: Immediate Plumbing Repair Needed for Apartment 4B",
+          "generated_body": "Hi [Landlord's Name],\n\nI am writing to report an emergency plumbing issue in my unit, Apartment 4B. This morning (Thursday) I discovered a significant water leak pooling under the kitchen sink. The leak intensifies whenever the dishwasher runs, and I have already turned off the water shutoff valve to contain the situation.\n\nGiven the volume of water and the risk of structural damage, I need an urgent plumber dispatched as soon as possible to address the leak. Please confirm when the plumber can arrive, or let me know if there are any additional steps I should take in the meantime.\n\nThank you for your immediate attention to this matter.\n\nBest regards,\n[Your Name]\n[Phone Number]\n[Email Address]",
+          "reference_email": "Subject: EMERGENCY PLUMBING LEAK: Apartment 4B - Immediate Plumber Required\n\nDear Landlord,\n\nI am writing to report a critical plumbing emergency in Apartment 4B.\n\nThis morning, Thursday, I discovered a significant water leak pooling water under the kitchen sink. The leak is particularly severe and flows heavily whenever the dishwasher runs. To prevent further damage to the floors and cabinetry, I have shut off the water valve under the sink.\n\nPlease dispatch an emergency plumber to Apartment 4B immediately. This is an urgent issue that requires prompt attention to avoid structural damage.\n\nSincerely,\n[Your Name]",
+          "latency_seconds": 1.56,
+          "metrics": {
+            "fact_recall": {
+              "score": 1.0,
+              "reason": "Recalled 5 out of 4 facts. Analysis: All required key facts are present in the email, either verbatim or semantically. The email accurately reports the emergency plumbing issue in Apartment 4B, including the significant water leak, its intensification when the dishwasher runs, the water shutoff valve being turned off, and the urgent need for a plumber to prevent structural damage."
+            },
+            "tone_adherence": {
+              "score": 1.0,
+              "reason": "Tone Adherence score: 5/5. Reasoning: The email uses vocabulary and structure that perfectly match the 'urgent' tone. The use of words like 'emergency', 'urgent', and 'immediate attention' convey a sense of urgency, and the email is well-structured and paced to convey this tone."
+            },
+            "structure_polish": {
+              "score": 1.0,
+              "reason": "Combined score: 1.00 (Programmatic: 100%, LLM: 100%). Details: Greeting found, Sign-off found. LLM Analysis: The email is well-structured and to the point. It clearly states the issue, requests urgent attention, and includes a polite closing. However, it does not contain any conversational meta-talk."
+            },
+            "average_score": 1.0
+          },
+          "status": "success"
+        }
+      ]
+    }
+  }
+}

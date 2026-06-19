@@ -1,0 +1,28 @@
+# Python virtual environments & cache
+venv/
+__pycache__/
+*.py[cod]
+*$py.class
+.pytest_cache/
+
+# Environment variables
+.env
+
+# Others
+.deepeval/
+.agents/
+docs/
+
+# Assessment files (offline only)
+FINAL_REPORT.md
+prompt_template.md
+Requirements.md
+
+# Temporary and duplicate root-level files
+test.py
+result.txt
+skills-lock.json
+# Exclude root-level duplicate input/output evaluation data only
+/scenarios.json
+/evaluation_report.json
+/evaluation_summary.csv

@@ -1,0 +1,21 @@
+Model,Scenario ID,Intent,Tone,Fact Recall Score,Tone Adherence Score,Structure Polish Score,Average Score,Latency (Seconds),Status
+llama-3.1-8b-instant,1,Follow up after a client meeting to request feedback on the proposal draft,formal,1.0,1.0,0.85,0.9500000000000001,1.35,success
+llama-3.1-8b-instant,2,Apologize for a shipping delay on a customer order and offer compensation,empathetic,1.0,0.75,1.0,0.9166666666666666,0.97,success
+llama-3.1-8b-instant,3,Request a deadline extension for the quarterly financial report,formal,1.0,1.0,1.0,1.0,27.02,success
+llama-3.1-8b-instant,4,Decline a job candidate after they reached the final interview stage,empathetic,1.0,0.75,0.85,0.8666666666666667,25.9,success
+llama-3.1-8b-instant,5,Send a payment reminder for an outstanding invoice,urgent,1.0,0.75,0.55,0.7666666666666666,26.32,success
+llama-3.1-8b-instant,6,Invite team members to a casual dinner to celebrate a product release,casual,1.0,0.75,0.85,0.8666666666666667,25.8,success
+llama-3.1-8b-instant,7,Notify stakeholders of an upcoming critical database server maintenance window,urgent,1.0,0.75,1.0,0.9166666666666666,25.89,success
+llama-3.1-8b-instant,8,Request a contract discount from a SaaS platform vendor during renewal negotiations,formal,1.0,1.0,1.0,1.0,29.2,success
+llama-3.1-8b-instant,9,Congratulate a colleague on a promotion and organize team drinks,casual,1.0,1.0,1.0,1.0,24.67,success
+llama-3.1-8b-instant,10,Ask the landlord to fix an emergency plumbing leak in the apartment,urgent,1.0,0.75,0.85,0.8666666666666667,25.1,success
+openai/gpt-oss-120b,1,Follow up after a client meeting to request feedback on the proposal draft,formal,1.0,0.75,0.85,0.8666666666666667,1.47,success
+openai/gpt-oss-120b,2,Apologize for a shipping delay on a customer order and offer compensation,empathetic,1.0,0.75,1.0,0.9166666666666666,1.66,success
+openai/gpt-oss-120b,3,Request a deadline extension for the quarterly financial report,formal,1.0,1.0,0.85,0.9500000000000001,1.54,success
+openai/gpt-oss-120b,4,Decline a job candidate after they reached the final interview stage,empathetic,1.0,0.5,1.0,0.8333333333333334,1.53,success
+openai/gpt-oss-120b,5,Send a payment reminder for an outstanding invoice,urgent,1.0,0.5,0.4,0.6333333333333333,1.52,success
+openai/gpt-oss-120b,6,Invite team members to a casual dinner to celebrate a product release,casual,1.0,1.0,1.0,1.0,2.83,success
+openai/gpt-oss-120b,7,Notify stakeholders of an upcoming critical database server maintenance window,urgent,1.0,0.75,1.0,0.9166666666666666,1.66,success
+openai/gpt-oss-120b,8,Request a contract discount from a SaaS platform vendor during renewal negotiations,formal,1.0,0.75,1.0,0.9166666666666666,1.7,success
+openai/gpt-oss-120b,9,Congratulate a colleague on a promotion and organize team drinks,casual,1.0,0.75,1.0,0.9166666666666666,1.71,success
+openai/gpt-oss-120b,10,Ask the landlord to fix an emergency plumbing leak in the apartment,urgent,1.0,1.0,1.0,1.0,1.56,success

@@ -1,0 +1,119 @@
+[
+  {
+    "id": 1,
+    "intent": "Follow up after a client meeting to request feedback on the proposal draft",
+    "key_facts": [
+      "Met on Tuesday to discuss the Q3 marketing campaign project.",
+      "Sent the proposal draft on Wednesday afternoon.",
+      "Feedback is requested by Friday at 5:00 PM local time to keep the project timeline on schedule."
+    ],
+    "tone": "formal",
+    "reference_email": "Subject: Follow-up: Q3 Marketing Campaign Proposal Feedback Request\n\nDear [Name],\n\nI hope this email finds you well.\n\nIt was a pleasure meeting with you on Tuesday to discuss our plans for the Q3 marketing campaign project. As agreed, I sent over the draft proposal for your review on Wednesday afternoon.\n\nTo ensure we keep our launch timeline on schedule, could you please share your feedback on the proposal by Friday at 5:00 PM local time? If you need additional time or have any immediate questions, please let me know.\n\nBest regards,\n[Your Name]"
+  },
+  {
+    "id": 2,
+    "intent": "Apologize for a shipping delay on a customer order and offer compensation",
+    "key_facts": [
+      "Order number is #10842.",
+      "Delay was caused by severe winter weather in the Midwest logistics hub.",
+      "New expected delivery date is June 22nd.",
+      "Offering a $15 credit towards their next purchase as compensation."
+    ],
+    "tone": "empathetic",
+    "reference_email": "Subject: Important update regarding your order #10842\n\nDear [Name],\n\nI am writing to sincerely apologize for a delay in delivery for your order #10842.\n\nDue to severe winter weather at our Midwest logistics hub, shipping routes have been temporarily disrupted, affecting your order's transit. We are doing everything we can to expedite this, and your new expected delivery date is now June 22. \n\nI know how frustrating shipping delays can be. To help make this right, we've applied a $15 credit to your account, which will automatically deduct from your next purchase. \n\nThank you so much for your patience and understanding.\n\nWarmly,\n[Your Name]"
+  },
+  {
+    "id": 3,
+    "intent": "Request a deadline extension for the quarterly financial report",
+    "key_facts": [
+      "The current report deadline is Monday, June 22nd.",
+      "The delay is caused by a late data release from the European division.",
+      "Requesting a new submission deadline of Thursday, June 25th.",
+      "Can provide a partial draft of the completed sections on Monday."
+    ],
+    "tone": "formal",
+    "reference_email": "Subject: Extension Request: Quarterly Financial Report\n\nDear [Name],\n\nI am writing to formally request a brief extension for the submission of the quarterly financial report, which is currently scheduled for Monday, June 22nd.\n\nUnfortunately, we have experienced an unexpected delay in receiving the final figures from our European division. As a result, we require additional time to integrate their data and ensure the report's accuracy. I would like to request a new submission deadline of Thursday, June 25th.\n\nIn the meantime, I can share a partial draft containing all other completed sections this Monday for your preliminary review. Thank you for your consideration and understanding.\n\nSincerely,\n[Your Name]"
+  },
+  {
+    "id": 4,
+    "intent": "Decline a job candidate after they reached the final interview stage",
+    "key_facts": [
+      "Candidate name is Sarah Miller, applying for Senior QA Engineer.",
+      "The decision was very difficult because her technical skills and background are excellent.",
+      "The hiring team ultimately selected another candidate who has more experience in test automation frameworks."
+    ],
+    "tone": "empathetic",
+    "reference_email": "Subject: Interview Update: Senior QA Engineer role at [Company]\n\nDear Sarah,\n\nThank you so much for taking the time to meet with our team during the final interview stage for the Senior QA Engineer position.\n\nThis was an incredibly difficult decision for the team. We were deeply impressed by your technical skills and your excellent QA background. However, we have decided to move forward with another candidate whose experience aligns more closely with the specific test automation frameworks we are building out.\n\nWe appreciate the enthusiasm and expertise you shared with us. We would love to stay in touch and keep you in mind for future roles that fit your background.\n\nWishing you all the best in your search.\n\nBest regards,\n[Your Name]"
+  },
+  {
+    "id": 5,
+    "intent": "Send a payment reminder for an outstanding invoice",
+    "key_facts": [
+      "Invoice number is #INV-2026-904.",
+      "Original due date was June 1st, and the outstanding balance is $4,500.",
+      "This is the second reminder.",
+      "Requesting immediate payment processing to prevent temporary service suspension."
+    ],
+    "tone": "urgent",
+    "reference_email": "Subject: URGENT: Outstanding Payment for Invoice #INV-2026-904\n\nDear [Name],\n\nThis is our second reminder that invoice #INV-2026-904 for $4,500 remains outstanding. This invoice was originally due on June 1st.\n\nPlease process this payment immediately. If we do not receive payment or confirmation of payment processing within the next 48 hours, we will be forced to temporarily suspend your active services until the account is brought current.\n\nIf payment has already been sent, please email us a copy of the receipt so we can update our records.\n\nThank you for your prompt attention to this matter.\n\nSincerely,\n[Your Name]"
+  },
+  {
+    "id": 6,
+    "intent": "Invite team members to a casual dinner to celebrate a product release",
+    "key_facts": [
+      "Occasion is celebrating the successful release of product version 3.0.",
+      "Venue is Tony's Pizzeria on 5th Avenue.",
+      "Date and time: Thursday at 7:00 PM.",
+      "Colleagues should RSVP by Tuesday noon so reservations can be finalized."
+    ],
+    "tone": "casual",
+    "reference_email": "Subject: Celebration dinner on Thursday: Product v3.0 is live! 🍕\n\nHey team,\n\nWe did it! Product version 3.0 is officially live, and we deserve a celebration.\n\nI'm hosting a casual team dinner this Thursday at 7:00 PM at Tony's Pizzeria on 5th Avenue. It'll be a great chance to kick back, eat some good food, and celebrate all the hard work everyone put in.\n\nPlease let me know if you can make it by RSVPing by Tuesday at noon so I can get the reservation finalized. Hope to see you all there!\n\nBest,\n[Your Name]"
+  },
+  {
+    "id": 7,
+    "intent": "Notify stakeholders of an upcoming critical database server maintenance window",
+    "key_facts": [
+      "Scheduled maintenance for core database server.",
+      "Maintenance window: Saturday, June 20, 2026, from 2:00 AM to 5:00 AM EST.",
+      "Expect up to 30 minutes of complete offline service disruption.",
+      "Requires saving all active sessions and transactions before 1:45 AM EST."
+    ],
+    "tone": "urgent",
+    "reference_email": "Subject: CRITICAL NOTICE: Database Server Maintenance & Outage Window - June 20\n\nDear Stakeholders,\n\nPlease be advised that we will be conducting critical server maintenance on our core database this coming Saturday, June 20, 2026.\n\nThe maintenance window is scheduled from 2:00 AM to 5:00 AM EST. During this period, the system will experience a complete service disruption and will be fully offline for up to 30 minutes.\n\nTo prevent any potential data loss, you must save all active sessions and finalize database transactions prior to 1:45 AM EST on Saturday. We appreciate your immediate attention to this notice and apologize for any inconvenience.\n\nBest regards,\n[Your Name]"
+  },
+  {
+    "id": 8,
+    "intent": "Request a contract discount from a SaaS platform vendor during renewal negotiations",
+    "key_facts": [
+      "Company has been a customer of the SaaS platform for 3 years.",
+      "Planning to expand license count from 50 seats to 150 seats.",
+      "Annual billing contract renewal is next month.",
+      "Requesting a 15% volume discount on the expanded seat license cost."
+    ],
+    "tone": "formal",
+    "reference_email": "Subject: Contract Renewal Negotiations & License Expansion Inquiry\n\nDear [Name],\n\nAs our annual contract renewal approaches next month, I would like to discuss our account terms. We have been very pleased with our 3-year partnership with your SaaS platform.\n\nDue to our team's growth, we are planning to significantly expand our utilization from the current 50 seats to 150 seats at this renewal. Given this threefold increase in our commitment, we would like to request a 15% volume discount on the expanded seat license pricing.\n\nI look forward to discussing how we can finalize this contract renewal. Please let me know when you are available for a brief call to discuss.\n\nBest regards,\n[Your Name]"
+  },
+  {
+    "id": 9,
+    "intent": "Congratulate a colleague on a promotion and organize team drinks",
+    "key_facts": [
+      "David Chen has been promoted to Engineering Manager.",
+      "David did an outstanding job leading the complex database migration project.",
+      "Gathering for team drinks at the pub down the road on Friday at 5:00 PM."
+    ],
+    "tone": "casual",
+    "reference_email": "Subject: Congrats to David Chen! (Plus team drinks Friday 🍻)\n\nHi everyone,\n\nI wanted to share some awesome news: David Chen has been promoted to Engineering Manager!\n\nAs many of you know, David did an absolutely outstanding job leading the complex database migration project over the last few months. This promotion is incredibly well-deserved.\n\nTo celebrate, we are meeting up for team drinks at the pub down the road this Friday at 5:00 PM. Please swing by, grab a drink, and congratulate David in person!\n\nCheers,\n[Your Name]"
+  },
+  {
+    "id": 10,
+    "intent": "Ask the landlord to fix an emergency plumbing leak in the apartment",
+    "key_facts": [
+      "Living in Apartment 4B.",
+      "Significant water leak pooling under the kitchen sink, discovered on Thursday morning.",
+      "Leaks heavily when the dishwasher runs.",
+      "Water shutoff valve has been turned off, and urgent plumber dispatch is required immediately to prevent structural damage."
+    ],
+    "tone": "urgent",
+    "reference_email": "Subject: EMERGENCY PLUMBING LEAK: Apartment 4B - Immediate Plumber Required\n\nDear Landlord,\n\nI am writing to report a critical plumbing emergency in Apartment 4B.\n\nThis morning, Thursday, I discovered a significant water leak pooling water under the kitchen sink. The leak is particularly severe and flows heavily whenever the dishwasher runs. To prevent further damage to the floors and cabinetry, I have shut off the water valve under the sink.\n\nPlease dispatch an emergency plumber to Apartment 4B immediately. This is an urgent issue that requires prompt attention to avoid structural damage.\n\nSincerely,\n[Your Name]"
+  }
+]
